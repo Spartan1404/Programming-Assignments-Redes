@@ -1,1 +1,1 @@
-
+Cuando se probó el proyecto UDP pinger en mininet se uso el host h2 para correr el archivo UDPServer.py y el host h1 para correr el archivo UDPClient.py
