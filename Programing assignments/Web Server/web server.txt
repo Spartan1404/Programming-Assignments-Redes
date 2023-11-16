@@ -1,0 +1,18 @@
+La tarea es crear un servidor web que solo sea capaz de procesar una sola peticion.
+La libreria a emplear en python para trabajar con conexiones y poder escribir un servidor a mano es "socket".
+Primero creas el socket del servidor, la linea de codigo serverSocket = socket(AF_INET, SOCK_STREAM) te crea un socket tcp.
+Elije un puerto donde va a correr el servidor, este debe ser mayor a 1024 (porque los menores a 1024 requieren permisos de administrador) y menor 65000.
+Luego enlazas el socket que creaste con una direccion ip y el puerto que elegiste.
+La direccion ip no puede ser cualquiera, tiene que ser la direccion ip de la maquina en la red, en linux para ver esa direccion pon el comando "ifconfig" en la terminal.
+Con serverSocket.listen(1) estableces la cantidad de conexiones maximas que el servidor va a escuchar.
+Luego ponemos un ciclo infinito para que el servidor este escuchando siempre.
+Dentro del ciclo connectionSocket, addr = serverSocket.accept() es donde se acepta la peticion del cliente
+Dentro del bloque try primero se acepta el mensaje que tendra un tamaño maximo de 1024 bytes
+Se coge el mesaje se procesa, se busca el archivo en la raiz del servidor(el archivo se llama hello.html y solo tiene un hola mundo, la raiz del servidor es donde esta el server.py) y finalmente se le manda al cliente en el ciclo for junto con un codigo 200
+Si el archivo no se encuentra en el except se manda un codigo 404 y una pagina que dice Not Found.
+
+Para montar esto en mininet vas para la terminal y pones sudo mn --nat
+Esto te levanta una topologia basica en mininet que tiene 2 hosts (h1 y h2) y un switch
+H1 y h2 tienen cada uno su direccion ip(por lo general 10.0.0.1 para h1 y 10.0.0.2 para h2) el .py que pase del servidor esta configurado para montarlo en el host h2
+Para abrir la consola de un host pones en la terminal xterm nombreHost (por ejemplo xterm h2)
+Dentro de la consola del host corres el script de python del servidor y luego en el navegador vas a la direccion del host y pides el archivo (Esto es a traves de la url por ejemplo: 10.0.0.2:3000/hello.html)
