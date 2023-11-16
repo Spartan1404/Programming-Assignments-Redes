@@ -1,4 +1,4 @@
-import socket
+viimport socket
 import time 
 while True:
     print("\nElija una opción")
@@ -15,7 +15,7 @@ while True:
     print("-------------------------\n")
 
     mysocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Crea un socket UDP para el cliente
-    server_address = ('10.0.0.2', 4000)  # Direccion ip y puerto del sockett
+    server_address = ('10.0.0.2', 4000)  # Direccion ip y puerto del servidor
     mysocket.settimeout(2)  # El timeout ocurrira en 2 segundos
 
     try: 
