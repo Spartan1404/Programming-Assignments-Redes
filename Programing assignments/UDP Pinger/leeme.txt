@@ -1,12 +1,1 @@
-No he hecho los opcionales del udp, al menos no todavia
 
-En esta tarea hay que hacer dos .py uno que actue de cliente y otro de servidor
-Hay que hacer un servidor udp y un cliente que se conecte a ese servidor, mande 10 mensaje ping, reciva los mensajes pong y calcule el RTT (Round Trip Time)
-
-Dado que udp es un protocolo poco seguro se puede presentar la perdida de paquetes, pero como la red que tenemos es virtual y todo esta en la misma maquina hay que simular la perdida de paquetes en el servidor
-Para eso se genera un numero random entre 1 y 10 y si es menor que 6 se pierde el paquete
-El .py del servidor es parecido al de la primera tarea, solo se crea el socket udp se recive el mensaje y si no se pierde el paquete se manda el mismo mensaje de vuelta
-
-Del lado del cliente cuando se presione una tecla se comenzaran a mandar los 10 pings al servidor
-Se le da un tiempo de espera de 2 segundos
-Por cada ping se guarda la hora exacta en la que se manda el mensaje y la hora exacta en la que se recibe la respuesta y se sustraen para obtener el RTT
