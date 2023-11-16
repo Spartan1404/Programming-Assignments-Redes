@@ -1,34 +1,34 @@
 import socket
-import time  # Import time library
+import time 
 while True:
-    print("\nChose you option to continue")
+    print("\nElija una opción")
     print("-------------------------")
-    print("1. Enter any key to ping to UDP server")
-    print("2. Enter 0 to exit program")
+    print("1. Presione cualquier tecla para iniciar")
+    print("2. Presione 0 para salir")
     print("-------------------------\n")
 
-    option = input("Enter you option: ")
+    option = input("Opcion: ")
     if option == 0:
         break
     print("-------------------------")
     print("Starting Ping")
     print("-------------------------\n")
 
-    mysocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Create a UDP socket for the client
-    server_address = ('127.0.0.1', 12000)  # Set IP Address and Port Number of Socket
-    mysocket.settimeout(2)  # Sets a timeout value 2 seconds
+    mysocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Crea un socket UDP para el cliente
+    server_address = ('10.0.0.2', 4000)  # Direccion ip y puerto del sockett
+    mysocket.settimeout(2)  # El timeout ocurrira en 2 segundos
 
-    try:  # Infinite loop to continuously send messages to the server
+    try: 
         for i in range(0, 9):
-            start = time.time()  # Start time send message to server
+            start = time.time()  # Momento en que se envia el mensaje
             message = 'Ping ' + str(i) + " " + time.ctime(start)
             try:
                 sent = mysocket.sendto(message.encode("utf-8"), server_address)
                 print("Sent " + message)
-                data, server = mysocket.recvfrom(4096)  # Maximum data received 4096 bytes
+                data, server = mysocket.recvfrom(4096)  # Maxima cantidad de bytes recibidos 4096
                 print("Received " + str(data))
                 end = time.time();
-                elapsed = end - start
+                elapsed = end - start # RTT
                 print("Time: " + str(elapsed * 1000) + " Milliseconds\n")
             except socket.timeout:
                 print("#" + str(i) + " Requested Time out\n")
